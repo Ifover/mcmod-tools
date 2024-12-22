@@ -1,0 +1,26 @@
+{
+  "name": "mcmod-tools",
+  "private": true,
+  "version": "0.3",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "ant-design-vue": "~4.2.6",
+    "pinia": "^2.3.0",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "less": "^4.2.1",
+    "less-loader": "^12.2.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12",
+    "vite-plugin-monkey": "^4.0.0",
+    "vue-tsc": "^2.0.19"
+  }
+}
