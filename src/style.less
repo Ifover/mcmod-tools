@@ -1,16 +1,25 @@
-@bg-color: rgba(233, 233, 233, 1);
 //@bg-color:rgba(233, 233, 233, .77);
-
-#app {
-  width: 333px;
-  max-height: 520px;
-  cursor: default;
-  background-color: @bg-color;
-  font-size: 12px;
-  position: fixed;
-  left: 10px;
-  top: 286px;
-  border-radius: 4PX 4px 0 0;
-  z-index: 10;
+div, a, ul, li {
+  color: unset;
 }
 
+.ooops {
+  z-index: 1;
+}
+
+.n-message-container {
+  z-index: 10000;
+}
+
+#mm-main {
+  cursor: default;
+  font-size: 12px;
+}
+
+.mm-more,
+.mm-close {
+  &:hover {
+    cursor: pointer;
+    color: #00A0D8;
+  }
+}

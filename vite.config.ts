@@ -16,26 +16,20 @@ export default defineConfig({
         namespace: 'https://github.com/ifover/UserScript',
         description: '在MC百科首页显示收藏列表，方便导航',
         license: 'GPL-3.0 License',
-        match: ['https://*.mcmod.cn/'],
+        match: ['https://*.mcmod.cn/*'],
         require: 'https://kit.fontawesome.com/d4dda3d6cc.js',
+        connect: 'center.mcmod.cn',
       },
       build: {
+        fileName: "mcmod-tools.user.js",
         externalGlobals: {
           vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js')
             .concat('https://unpkg.com/vue-demi@latest/lib/index.iife.js')
-            .concat(util.dataUrl(';window.Vue=Vue;'))
-            .concat('https://unpkg.com/dayjs/dayjs.min.js')
-            .concat('https://unpkg.com/dayjs/plugin/customParseFormat.js')
-            .concat('https://unpkg.com/dayjs/plugin/weekday.js')
-            .concat('https://unpkg.com/dayjs/plugin/localeData.js')
-            .concat('https://unpkg.com/dayjs/plugin/weekOfYear.js')
-            .concat('https://unpkg.com/dayjs/plugin/weekYear.js')
-            .concat('https://unpkg.com/dayjs/plugin/advancedFormat.js')
-            .concat('https://unpkg.com/dayjs/plugin/quarterOfYear.js'),
+            .concat(util.dataUrl(';window.Vue=Vue;')),
 
           pinia: cdn.jsdelivr('Pinia', 'dist/pinia.iife.prod.js'),
-          "ant-design-vue": cdn.unpkg('antd', 'dist/antd.min.js')
-        }
+          "naive-ui": cdn.unpkg('naive', 'dist/index.prod.js')
+        },
       },
     }),
   ],
@@ -51,16 +45,4 @@ export default defineConfig({
       }
     }
   },
-  // optimizeDeps: {
-  //   include: ['dayjs'], // 确保 dayjs 被正确打包
-  // },
-  // build: {
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         dayjs: ['dayjs'], // 将 dayjs 打包为单独的模块
-  //       },
-  //     },
-  //   },
-  // },
 });

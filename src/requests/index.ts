@@ -1,16 +1,16 @@
 import {GM_xmlhttpRequest} from "$";
-import {useUserStore} from "@/stores/userStore";
+import {useMMStore} from "@/stores/mmStore";
 
 
 const json2FormData = (json: any) => {
   return Object.keys(json).map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
-  }).join('&');
+  }).join('&')
 }
 
 
 const request = (url: string, data: object) => {
-  const userStore = useUserStore();
+  const userStore = useMMStore();
 
   return new Promise((resolve, reject) => {
     GM_xmlhttpRequest({
