@@ -35,13 +35,12 @@ const categoryEm = {
   modpack: 'modpack',
 }
 
-const emits = defineEmits(["eventFavoriteShow"])
 
 /**
  * 收藏 - 关闭
  */
 const handleClose = () => {
-  emits("eventFavoriteShow", false)
+  mmStore.setPanelShow('showFavorite', false)
 }
 
 /**
@@ -100,6 +99,7 @@ const getFavoriteFold = async () => {
       isLeaf: false,
     })
   })
+  if (!_favList.length) return
   parseData(_favList)
 }
 
@@ -185,13 +185,13 @@ const onLoadData = async (node: TreeOption) => {
   })
 }
 
-const parseData = (data: TreeOption[]) => {
+const parseData = (treeData: TreeOption[]) => {
   let gmFavList: FavoriteData[] = GM_getValue("favList");
   let mmFavList: TreeOption[];
 
   if (gmFavList && gmFavList.length) {
     // 收藏列表展示
-    mmFavList = data.filter((item: TreeOption) => {
+    mmFavList = treeData.filter((item: TreeOption) => {
       let o = gmFavList.find((i: FavoriteData) => i.favID === item.key)
       if (o && o.folderHidden === false) {
         return {
@@ -201,7 +201,7 @@ const parseData = (data: TreeOption[]) => {
     })
 
     // 收藏管理表格更新
-    gmFavList = data.map((item: TreeOption) => {
+    gmFavList = treeData.map((item: TreeOption) => {
       let o = gmFavList.find((i: FavoriteData) => i.favID === item.key)
       return {
         favID: item.key,
@@ -217,7 +217,7 @@ const parseData = (data: TreeOption[]) => {
       .map((item: FavoriteData) => item.favID) as string[]
 
   } else {
-    gmFavList = data.map((item: TreeOption) => {
+    gmFavList = treeData.map((item: TreeOption) => {
       return {
         favID: item.key,
         favName: item.label,
@@ -226,7 +226,7 @@ const parseData = (data: TreeOption[]) => {
       }
     }) as FavoriteData[]
 
-    mmFavList = data
+    mmFavList = treeData
   }
 
 
@@ -410,7 +410,6 @@ onMounted(() => {
           </template>
         </n-tree>
       </NScrollbar>
-
     </div>
     <MManage :showModal="mmManageShow"
              @emit-close="eventClose"></MManage>
